@@ -853,10 +853,6 @@ console.log("ফাংশনের বাইরের myName (আসল):", myNa
 
 
 
-
-
-
-
 function userDetails(firstName, lastName) {
    let fullName = firstName + " " + lastName;
    console.log(fullName);
@@ -964,14 +960,6 @@ console.log(name1); // আউটপুট কিন্তু এখনও "Abdul
 
 
 
-
-
-
-
-
-
-
-
 function userDetails(firstName, lastName) {
     firstName = "Mohammad";
     console.log(firstName);
@@ -1015,3 +1003,101 @@ Mohammad Aziz
 ফাংশনের ভেতরে যদি লোকাল ভেরিয়েবলকে বেশি গুরুত্ব দেওয়া না হতো, তবে ভুলে বাইরের কোনো ভেরিয়েবলের কারণে ফাংশনের ভেতরের হিসাব-নিকাশ ওলটপালট হয়ে যেত।
 ফাংশনকে নিরাপদ এবং স্বাধীন রাখার জন্যই জাভাস্ক্রিপ্ট নিয়ম করেছে—"ফাংশনের ভেতর লোকাল ভেরিয়েবলের কথাই শেষ কথা, 
 এখানে বাইরের গ্লোবাল ভেরিয়েবলের কোনো মাতব্বরি চলবে না।"
+
+
+
+// ১. ফাংশন ডেফিনিশন (প্যারামিটার: firstName, lastName)
+function details(firstName, lastName) {
+  console.log(`User Name: ${firstName} ${lastName}`);
+}
+
+// ২. ইউজার থেকে ইনপুট নেওয়া
+let userFirst = prompt("Enter First Name:");
+let userLast = prompt("Enter Last Name:");
+
+// ৩. ইনপুট নেওয়া ভ্যারিয়েবলগুলোকে আর্গুমেন্ট হিসেবে ফাংশনে পাঠানো
+details(userFirst, userLast);
+
+
+ধরা যাক ইউজার ইনপুট দিলেন: first = "Abdullah" এবং last = "Aziz"।
+
+গ্লোবাল স্কোপ (Global Scope):
+
+userFirst ভ্যারিয়েবলে জমা হলো "Abdullah"
+
+userLast ভ্যারিয়েবলে জমা হলো "Aziz"
+
+Function Call (details(userFirst, userLast)):
+
+userFirst-এর মান কপি হয়ে লোকাল প্যারামিটার firstName = "Abdullah" হলো।
+
+userLast-এর মান কপি হয়ে লোকাল প্যারামিটার lastName = "Aziz" হলো।
+
+Execution & Cleanup:
+
+কনসোলে প্রিন্ট হলো: User Name: Abdullah Aziz
+
+ফাংশনের কাজ শেষ হওয়ার সাথে সাথে লোকাল firstName ও lastName মেমোরি থেকে ডিলিট হয়ে গেল।
+কিন্তু গ্লোবাল userFirst ও userLast-এ ইউজারের দেওয়া মান থেকে গেল।
+
+
+
+ব্যাকএন্ড ইউজার রেজিস্ট্রেশন ও পাসওয়ার্ড সিকিউরিটি চেক
+সিনারিও: ইউজার যখন ওয়েবসাইট বা অ্যাপে সাইন-আপ করার জন্য নাম ও পাসওয়ার্ড ইনপুট দেয়, তখন ব্যাকএন্ড ফাংশনে
+পাসওয়ার্ড স্ট্রং কি না (অন্তত ৮ ক্যারেক্টার) তা চেক করে রেসপন্স দিতে হয়।
+
+// ১. ফাংশন ডেফিনিশন (প্যারামিটার: username, password)
+function registerUser(username, password) {
+  // পাসওয়ার্ড সিকিউরিটি চেক
+  if (password.length < 8) {
+    return `Error: Hi ${username}, password must be at least 8 characters long!`;
+  } else {
+    return `Success: Account created successfully for ${username}!`;
+  }
+}
+
+// ২. ইউজার থেকে ইনপুট নেওয়া
+let inputUser = prompt("Enter your desired Username:");
+let inputPass = prompt("Enter your Password:");
+
+// ৩. ইনপুট দুটো আর্গুমেন্ট হিসেবে ফাংশনে পাঠিযে রেজাল্ট ভ্যারিয়েবলে রাখা
+let statusMessage = registerUser(inputUser, inputPass);
+
+// ৪. আউটপুট দেখানো
+console.log(statusMessage);
+alert(statusMessage);
+
+
+
+ই-কমার্স ডিসকাউন্ট ক্যালকুলেটর (Shopping Checkout)
+সিনারিও: চেকআউট পেজে ইউজার তার মোট কেনাকাটার পরিমাণ (Amount) এবং প্রোমো কোড ইনপুট দেয়। 
+ফাংশন সেই ইনপুট নিয়ে ডিসকাউন্ট হিসাব করে ফাইনাল বিল বের করে।
+
+// ১. ফাংশন ডেফিনিশন (প্যারামিটার: totalAmount, promoCode)
+function calculateFinalBill(totalAmount, promoCode) {
+  let discount = 0;
+
+  if (promoCode === "SAVE20") {
+    discount = totalAmount * 0.20; // ২০% ছাড়
+  } else if (promoCode === "SAVE10") {
+    discount = totalAmount * 0.10; // ১০% ছাড়
+  }
+
+  let finalBill = totalAmount - discount;
+  return `Original Price: $${totalAmount} | Discount: $${discount} | Final Payable: $${finalBill}`;
+}
+
+// ২. ইউজার থেকে ইনপুট নেওয়া
+let userAmount = Number(prompt("Enter total shopping amount ($):"));
+let userPromo = prompt("Enter Promo Code (if any):");
+
+// ৩. ইনপুট নিয়ে ফাংশন কল ও গ্লোবাল ভ্যারিয়েবলে রেজাল্ট জমা রাখা
+let invoiceSummary = calculateFinalBill(userAmount, userPromo);
+
+console.log(invoiceSummary);
+
+
+🔍 কেন এই প্যাটার্ন বাস্তব প্রজেক্টে ব্যবহৃত হয়?
+পুনর্ব্যবহারযোগ্যতা (Reusability): registerUser বা calculateFinalBill ফাংশন এক জায়গায় লেখা থাকে, হাজার হাজার ইউজার আলাদা ইনপুট দিলে এটি বারবার সঠিকভাবে হিসাব করে আউটপুট দেয়।
+
+ক্লিন আর্কিটেকচার: ইনপুট নেওয়ার কাজ আলাদা, প্রসেসিং করার কাজ ফাংশনের ভেতরে আলাদা।
