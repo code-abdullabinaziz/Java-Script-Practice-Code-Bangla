@@ -395,4 +395,67 @@ createUser("Abdullah"); // আউটপুট: User: Abdullah, ID: 452 (র্�
 
 ব্যাকএন্ড ডেভেলপমেন্ট বা সিকিউরিটির ক্ষেত্রে এই ডিফল্ট প্যারামিটার আপনার কোডকে ক্র্যাশ হওয়া থেকে বাঁচায়।
 যেমন: হ্যাকাররা অনেক সময় এপিআই (API) রিকোয়েস্ট পাঠানোর সময় কিছু জরুরি ডেটা (যেমন: User Role বা Limit) ফাঁকা বা undefined পাঠিয়ে দেয়। 
-ব্যাকএন্ডে যদি  ডিফল্ট প্যারামিটার সেট করা থাকে (যেমন: role = "user"), তবে হ্যাকার চাইলেও প্যারামিটার ফাঁকা রেখে সিস্টেমে কোনো এরর তৈরি করতে বা অ্যাডমিন প্রিভিলেজ নিতে পারবে না।
+ব্যাকএন্ডে যদি  ডিফল্ট প্যারামিটার সেট করা থাকে (যেমন: role = "user"),
+তবে হ্যাকার চাইলেও প্যারামিটার ফাঁকা রেখে সিস্টেমে কোনো এরর তৈরি করতে বা অ্যাডমিন প্রিভিলেজ নিতে পারবে না।
+
+
+JavaScript-এ ফাংশনে Default Parameter প্রধানত ৩টি নিয়মে (বা উপায়ে) দেওয়া যায়।
+
+১. ES6 Default Parameter Syntax (আধুনিক ও সবচেয়ে জনপ্রিয়)
+ES6 (2015) আসার পর থেকে প্যারামিটারের সাথে সরাসরি = চিহ্ন দিয়ে ডিফল্ট ভ্যালু সেট করে দেওয়া যায়। এটি সবচেয়ে ক্লিন এবং স্ট্যান্ডার্ড পদ্ধতি।
+
+// প্যারামিটারের ভেতরেই ডিফল্ট মান সেট করা
+function greetUser(name = "Guest", role = "User") {
+    console.log(`Hello ${name}, Role: ${role}`);
+}
+
+greetUser("Robin", "Admin"); // Output: Hello Robin, Role: Admin
+greetUser();                // Output: Hello Guest, Role: User
+greetUser("Alex");          // Output: Hello Alex, Role: User
+
+
+
+২. Logical OR Operator (||) ব্যবহার করে (Old Method / Fallback)
+ES6 আসার আগে JavaScript-এ ডিফল্ট ভ্যালু সেট করার জন্য ফাংশনের ভেতরে || (OR) অপারেটর ব্যবহার করা হতো।
+
+function connectDatabase(port) {
+    // port-এর মান undefined বা falsy হলে 5432 সেট হবে
+    port = port || 5432; 
+    console.log(`Connected on port: ${port}`);
+}
+
+connectDatabase(8080); // Output: Connected on port: 8080
+connectDatabase();     // Output: Connected on port: 5432
+
+
+⚠️ সীমাবদ্ধতা (Falsy Issue): যদি আপনি ইনপুট হিসেবে 0, false, বা "" (Empty String) পাঠান, তবে || সেটিকেও মিথ্যা বা খালি ধরে নিয়ে ডিফল্ট ভ্যালু বসিয়ে দেয়।
+
+
+
+৩. Ternary Operator বা undefined Check (Strict Control)
+প্যারামিটার হিসেবে 0 বা false পাঠালেও যেন সঠিক ইনপুট হিসেবে কাজ করে এবং কোনো সমস্যা না হয়, তার জন্য undefined চেক করা হয়।
+
+function setVolume(level) {
+    // ইনপুট যদি নির্দিষ্টভাবে undefined হয়, তবেই ডিফল্ট 50 সেট হবে
+    level = (typeof level !== "undefined") ? level : 50;
+    console.log(`Volume Level: ${level}`);
+}
+
+setVolume(0);  // Output: Volume Level: 0 (এখানে 0 ঠিকমতো কাজ করেছে)
+setVolume();   // Output: Volume Level: 50
+
+
+💡 বোনাস: Nullish Coalescing Operator (??)
+ES2020-এ আসা এই নতুন অপারেটরটি ||-এর সীমাবদ্ধতা দূর করে। 
+এটি শুধুমাত্র ইনপুট null বা undefined হলেই ডিফল্ট ভ্যালু নেয়, কিন্তু 0 বা false-কে সঠিক মান হিসেবে রাখে।
+
+
+function setTimeoutValue(seconds) {
+    let delay = seconds ?? 30; // seconds খালি/null হলেই ৩০ সেট হবে
+    console.log(`Delay set to: ${delay} seconds`);
+}
+
+setTimeoutValue(0); // Output: Delay set to: 0 seconds
+setTimeoutValue();  # Output: Delay set to: 30 seconds
+
+
