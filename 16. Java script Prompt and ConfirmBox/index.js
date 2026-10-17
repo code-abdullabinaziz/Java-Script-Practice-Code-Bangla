@@ -1,6 +1,7 @@
 Javascript Prompt 
 
-জাভাস্ক্রিপ্টে prompt() এবং confirm() হলো ব্রাউজারের দুটি অত্যন্ত পপুলার ইন-বিল্ট (In-built) পপ-আপ বক্স। যখন ইউজার ইন্টারফেস (UI) নিয়ে কাজ করতে চাইলে বা 
+জাভাস্ক্রিপ্টে prompt() এবং confirm() হলো ব্রাউজারের দুটি অত্যন্ত পপুলার ইন-বিল্ট (In-built) পপ-আপ বক্স। 
+যখন ইউজার ইন্টারফেস (UI) নিয়ে কাজ করতে চাইলে বা 
 ইউজারের কাছ থেকে সরাসরি কোনো ইনপুট বা সিদ্ধান্ত নিতে, তখন এই বক্সগুলো ব্যবহার করা হয়।
 
 পাইথন বা সি-তে ইউজারের কাছ থেকে ডেটা নেওয়ার জন্য যেমন input() বা scanf() ব্যবহার করতে, জাভাস্ক্রিপ্ট ব্রাউজারে সেই কাজটাই করে prompt()।
@@ -8,11 +9,13 @@ Javascript Prompt
 আর কোনো কিছুর জন্য হ্যা/না (Yes/No) কনফার্মেশন নেওয়ার জন্য ব্যবহৃত হয় confirm()।
 
 📥 ১. JavaScript Prompt Box (prompt())
-ইউজারের কাছ থেকে কোনো টেক্সট বা ইনপুট নেওয়ার জন্য prompt() ব্যবহার করা হয়। এটি যখন স্ক্রিনে আসে, তখন ইউজারকে একটা লেখার জায়গা (Input Field) এবং সাথে OK ও Cancel বাটন দেখায়।
+ইউজারের কাছ থেকে কোনো টেক্সট বা ইনপুট নেওয়ার জন্য prompt() ব্যবহার করা হয়। 
+এটি যখন স্ক্রিনে আসে, তখন ইউজারকে একটা লেখার জায়গা (Input Field) এবং সাথে OK ও Cancel বাটন দেখায়।
 
 let userName = prompt("আপনার নাম লিখুন:", "ডিফল্ট নাম");
 
-💡 নোট: ব্র্যাকেটের ভেতরের প্রথম অংশটি হলো মেসেজ, আর কমা দিয়ে দ্বিতীয় অংশটি হলো ঐ ইনপুট বক্সের Default Value (ইউজার কিছু না লিখলে যেটা নিজে থেকে বসে থাকবে)। দ্বিতীয় অংশটি দেওয়া অপশনাল।
+💡 নোট: ব্র্যাকেটের ভেতরের প্রথম অংশটি হলো মেসেজ, আর কমা দিয়ে দ্বিতীয় অংশটি হলো 
+ঐ ইনপুট বক্সের Default Value (ইউজার কিছু না লিখলে যেটা নিজে থেকে বসে থাকবে)। দ্বিতীয় অংশটি দেওয়া অপশনাল।
 
 
 prompt()-এর ৩টি গোল্ডেন রুলস (রিটার্ন টাইপ):
@@ -60,6 +63,31 @@ if (age >= 18) {
 
 
 
+
+let priceInput = prompt("Enter product price: "); // ইউজার দিল যেমন "500"
+let price = Number(priceInput);
+
+// ১০% ডিসকাউন্ট হিসাব করা
+let discountAmount = price * 0.10;
+let finalPrice = price - discountAmount;
+
+console.log(`Original Price: ${price}`);
+console.log(`Final Price after 10% discount: ${finalPrice}`);
+
+
+
+let priceInput = prompt("Enter product price: "); // ইউজার দিল যেমন "1000"
+let price = Number(priceInput);
+
+// ৫০% ডিসকাউন্ট হিসাব করা (0.50 দিয়ে গুণ বা 2 দিয়ে ভাগ করলেই হবে)
+let discountAmount = price * 0.50; 
+let finalPrice = price - discountAmount;
+
+console.log(`Original Price: ${price}`);
+console.log(`Final Price after 50% discount: ${finalPrice}`);
+
+
+let finalPrice = price / 2; // সরাসরি অর্ধেক দাম হয়ে যাবে
 
 
 ------------------------------------------
