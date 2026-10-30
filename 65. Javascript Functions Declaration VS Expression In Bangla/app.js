@@ -25,7 +25,9 @@ sayHello();
 
 
 খ. Function Expression (ফাংশন এক্সপ্রেশন)
-এখানে একটি ফাংশন তৈরি করে সেটিকে একটি ভেরিয়েবলের (const বা let) ভেতর অ্যাসাইন বা জমা করে রাখা হয়। সাধারণত এক্ষেত্রে ডানপাশের ফাংশনটির কোনো নাম থাকে না (Anonymous Function)।
+
+এখানে একটি ফাংশন তৈরি করে সেটিকে একটি ভেরিয়েবলের (const বা let) ভেতর অ্যাসাইন বা জমা করে রাখা হয়। 
+সাধারণত এক্ষেত্রে ডানপাশের ফাংশনটির কোনো নাম থাকে না (Anonymous Function)।
 
 Function Expression:
 let showMyName = function() {
@@ -168,7 +170,8 @@ sayHello(); // বাইরে থেকেও কল করা যাচ্ছ�
 
 ২. যখন এটি গ্লোবাল থাকে না (Local/Function Scope)
 
-যদি একটি Function Declaration-কে আরেকটি ফাংশনের ভেতরে তৈরি করা হয়, তবে তার পাওয়ার বা স্কোপ শুধু ওই ভেতরের ফাংশনটুকুর মধ্যেই সীমাবদ্ধ থাকে। বাইরে বের হলেই সে আর কাজ করবে না।
+যদি একটি Function Declaration-কে আরেকটি ফাংশনের ভেতরে তৈরি করা হয়,
+তবে তার পাওয়ার বা স্কোপ শুধু ওই ভেতরের ফাংশনটুকুর মধ্যেই সীমাবদ্ধ থাকে। বাইরে বের হলেই সে আর কাজ করবে না।
 
 function parentFunction() {
     // এটি লোকাল ডিক্লেয়ারেশন
@@ -241,7 +244,9 @@ if(true) {
 showMyName();
 
 💡 এই সমস্যা এড়াতে প্রফেশনালরা কী করেন?
-বাস্তব জীবনে বা কোনো প্রজেক্টে কন্ডিশনের ওপর ভিত্তি করে ফাংশন তৈরি করতে হলে প্রফেশনালরা কখনই Function Declaration ব্যবহার করেন না। তারা ব্যবহার করেন Function Expression (let বা const দিয়ে)।
+    
+বাস্তব জীবনে বা কোনো প্রজেক্টে কন্ডিশনের ওপর ভিত্তি করে ফাংশন তৈরি করতে হলে প্রফেশনালরা কখনই Function Declaration ব্যবহার করেন না। 
+তারা ব্যবহার করেন Function Expression (let বা const দিয়ে)।
 
 let greet; // প্রথমে একটি ফাঁকা ভেরিয়েবল নিলাম
 
@@ -256,6 +261,61 @@ if (true) {
 }
 
 greet(); // এটি সব ব্রাউজারে এবং সব মোডেই ১০০% সেফ এবং পারফেক্ট নিয়ম!
+
+
+
+
+let showMyName;
+
+if (true) {
+  showMyName = function () {
+    console.log("Abdullah");
+  };
+} else {
+  showMyName = function () {
+    console.log("Aziz");
+  };
+}
+
+showMyName(); // Abdullah
+
+
+
+কেন এটি ভালো 
+
+showMyName একটি variable, তাই if এর বাইরেও থাকে
+শুধু একটি শর্ত সত্য হওয়া branch এর function assign হয়
+আচরণ strict ও non-strict দুই mode এই একই থাকে 
+
+আরও সংক্ষিপ্ত উপায় (Arrow function)
+
+const condition = true;
+
+const showMyName = condition
+  ? () => console.log("Abdullah")
+  : () => console.log("Aziz");
+
+showMyName(); // Abdullah
+
+
+
+
+if(true) {
+  showMyName();
+
+} else{
+ showMyName();
+}
+
+function showMyName() {
+  console.log("Aziz");
+}
+
+
+
+
+
+
 
 
 
@@ -285,7 +345,8 @@ for (let i=0; i<5; i++) { ... } -> এটি একটি ব্লক।
 
 ২. স্কোপ (Scope) মানে কী?
   
-স্কোপ মানে হলো "এলাকা" বা "সীমানা"। অর্থাৎ, কোডের কোনো একটা লাইনে একটা ভেরিয়েবল বা ফাংশন তৈরি করলে, সেটিকে কোডের কতদূর পর্যন্ত দেখা যাবে বা ব্যবহার করা যাবে, সেটাই হলো তার স্কোপ।
+স্কোপ মানে হলো "এলাকা" বা "সীমানা"। অর্থাৎ, কোডের কোনো একটা লাইনে একটা ভেরিয়েবল বা ফাংশন তৈরি করলে, 
+সেটিকে কোডের কতদূর পর্যন্ত দেখা যাবে বা ব্যবহার করা যাবে, সেটাই হলো তার স্কোপ।
 
 জাভাস্ক্রিপ্টে মূলত ৩ ধরনের স্কোপ বা সীমানা আছে:
 
@@ -345,7 +406,8 @@ console.log(job); // ❌ এরর দেবে!
 
 এই ব্লকের ভেতরে let বা const দিয়ে যা-ই বানানো হবে, তা বাইরের দুনিয়া থেকে সম্পূর্ণ লুকিয়ে থাকবে।
 
-কিন্তু প্রাচীন var দিয়ে কিছু বানালে সে এই দেয়াল বা ব্লক মানে না (সে দেয়াল ভেঙে বাইরে চলে আসে, যা কোডে বাগ বা এরর তৈরি করে। এই কারণেই আধুনিক জাভাস্ক্রিপ্টে var ব্যবহার করা নিষেধ)।
+কিন্তু প্রাচীন var দিয়ে কিছু বানালে সে এই দেয়াল বা ব্লক মানে না (সে দেয়াল ভেঙে বাইরে চলে আসে,
+যা কোডে বাগ বা এরর তৈরি করে। এই কারণেই আধুনিক জাভাস্ক্রিপ্টে var ব্যবহার করা নিষেধ)।
 
 
 
@@ -472,9 +534,11 @@ const add = function(a, b) {
 };
 
 💡 কখন ব্যবহার করা লাগবে?
-কোডের গতিবিধি বা ফ্লো নিয়ন্ত্রণ করতে (Hoisting বন্ধ রাখতে): যদি চাওয়া হইয় যে ফাংশনটি কোডের নিচে তৈরি হলে তা ওপর থেকে কেউ ভুলবশত কল করতে না পারুক, তবে এটি ব্যবহার করা লাগবে
+কোডের গতিবিধি বা ফ্লো নিয়ন্ত্রণ করতে (Hoisting বন্ধ রাখতে): যদি চাওয়া হইয় যে ফাংশনটি কোডের নিচে তৈরি হলে তা 
+ওপর থেকে কেউ ভুলবশত কল করতে না পারুক, তবে এটি ব্যবহার করা লাগবে
 
-কলব্যাক ফাংশন (Callback Function) হিসেবে: অন্য কোনো ফাংশনের ভেতর আর্গুমেন্ট হিসেবে পাঠাতে চাইলে এটি সবচেয়ে বেশি ব্যবহার হয় (যেমন: setTimeout বা অ্যারের map, filter, forEach-এ)।
+কলব্যাক ফাংশন (Callback Function) হিসেবে: অন্য কোনো ফাংশনের ভেতর আর্গুমেন্ট হিসেবে 
+পাঠাতে চাইলে এটি সবচেয়ে বেশি ব্যবহার হয় (যেমন: setTimeout বা অ্যারের map, filter, forEach-এ)।
 
 কন্ডিশনাল ফাংশন (Conditional Logic): কোনো নির্দিষ্ট শর্ত সাপেক্ষে ফাংশন তৈরি করতে চাইলে।
 
@@ -495,5 +559,218 @@ if (isLoggedIn) {
 
 
 
+কোডের স্ট্রাকচার দেখলে বুঝতে পারবেন কেন if ব্লকের ভেতর Function Expression ব্যবহার করা বেশি প্রেডিক্টেবল ও প্রফেশনাল।
+
+উদাহরণ ১: শপিং কার্টে ডিসকাউন্ট হিসাব করা
+❌ Function Declaration দিয়ে (ব্লকের ভেতর লেখা ঝুঁকিপূর্ণ)
 
 
+const isPremiumUser = true;
+let finalPrice;
+
+if (isPremiumUser) {
+    // if ব্লকের ভেতরে Function Declaration
+    function applyDiscount(price) {
+        return price - (price * 0.20);
+    }
+    finalPrice = applyDiscount(1000);
+} else {
+    function applyDiscount(price) {
+        return price - (price * 0.05);
+    }
+    finalPrice = applyDiscount(1000);
+}
+
+// সমস্যা: 'applyDiscount' ফাংশনটি ব্লক স্কোপের বাইরে থেকে 
+// ব্রাউজার বা নোড ইঞ্জিনের ভেদে অদ্ভুত আচরণ বা ভুল রেজাল্ট দিতে পারে।
+
+
+
+✅ Function Expression দিয়ে (প্রফেশনাল ও নিরাপদ)
+
+const isPremiumUser = true;
+let applyDiscount; // ১. বাইরে ভেরিয়েবল রাখা হলো
+
+if (isPremiumUser) {
+    // ২. ভেতরে Arrow/Anonymous Function Expression দিয়ে অ্যাসাইন করা হলো
+    applyDiscount = (price) => price - (price * 0.20);
+} else {
+    applyDiscount = (price) => price - (price * 0.05);
+}
+
+// ৩. ব্লকের বাইরে খুব নিরাপদে কল করা যাচ্ছে
+const finalPrice = applyDiscount(1000);
+console.log(finalPrice); // Output: 800
+
+
+
+
+
+
+উদাহরণ ২: লগইন সার্ভিস সিলেক্ট করা
+❌ Function Declaration দিয়ে
+
+const loginType = 'FACEBOOK';
+let statusMessage;
+
+if (loginType === 'EMAIL') {
+    function loginUser(credentials) {
+        return `Authenticating ${credentials.email} with Password...`;
+    }
+    statusMessage = loginUser({ email: 'test@gmail.com' });
+} else {
+    function loginUser(credentials) {
+        return `Authenticating with Facebook Token: ${credentials.token}`;
+    }
+    statusMessage = loginUser({ token: 'fb_123' });
+}
+
+
+✅ Function Expression দিয়ে
+
+const loginType = 'FACEBOOK';
+let loginUser;
+
+if (loginType === 'EMAIL') {
+    loginUser = (credentials) => {
+        return `Authenticating ${credentials.email} with Password...`;
+    };
+} else if (loginType === 'FACEBOOK') {
+    loginUser = (credentials) => {
+        return `Authenticating with Facebook Token: ${credentials.token}`;
+    };
+} else {
+    loginUser = () => "Invalid Login Method!";
+}
+
+const statusMessage = loginUser({ token: 'fb_123' });
+console.log(statusMessage);
+
+
+
+উদাহরণ ৩: নোটিফিকেশন পাঠানোর লজিক
+❌ Function Declaration দিয়ে
+
+const userPreference = 'SMS';
+
+if (userPreference === 'SMS') {
+    function sendNotification(message) {
+        console.log(`Sending SMS: ${message}`);
+    }
+} else {
+    function sendNotification(message) {
+        console.log(`Sending Email: ${message}`);
+    }
+}
+
+// Hoisting-এর কারণে অনেক সময় কন্ডিশন সত্য না হলেও 
+// শেষের ডিক্লেয়ার করা ফাংশনটি ভুলবশত রান হয়ে যেতে পারে!
+sendNotification("Your OTP is 4821");
+
+
+✅ Function Expression দিয়ে
+
+const userPreference = 'SMS';
+let sendNotification;
+
+if (userPreference === 'SMS') {
+    sendNotification = (message) => {
+        console.log(`Sending SMS: ${message}`);
+    };
+} else {
+    sendNotification = (message) => {
+        console.log(`Sending Email: ${message}`);
+    };
+}
+
+// কোডের ফ্লো ক্রিস্টাল ক্লিয়ার
+sendNotification("Your OTP is 4821");
+
+
+
+
+Function Expression এবং Function Declaration—দুটিরই নিজস্ব জায়গা ও নির্দিষ্ট ব্যবহারের ক্ষেত্র (Use Cases) রয়েছে। 
+
+প্রফেশনাল কোডিংয়ে কোনটি কোথায় ব্যবহার করা উচিত, তা নিচে স্পষ্ট করে দেওয়া হলো:
+
+১. কখন Function Declaration ব্যবহার করবেন? (Where Declaration is Better)
+    
+Top-Level Helper/Utility Functions: ফাইলের একদম ওপরের লেভেলে যখন কোনো গ্লোবাল বা হেল্পার ফাংশন লিখবেন (যেমন: ডাটা ফরম্যাট করা,
+পাসওয়ার্ড হ্যাশ করা, ডাটাবেজ কানেক্ট করা), তখন Function Declaration ব্যবহার করা ভালো।
+
+কেন ভালো?
+
+Hoisting সুবিধা: ফাইল জুড়ে যেকোনো জায়গা থেকে এটিকে কল করা যায়। ফাংশনটি ফাইলের
+নিচে রেখেও ওপরের লাইনে ব্যবহার করতে পারবেন, এতে মূল বিজনেস লজিক ফাইলের ওপরে রাখা সহজ হয়।
+
+Code Readability: সাধারণ পড়ার সুবিধার্থে function doSomething() দেখলে সহজেই বোঝা যায় এটি একটি বিশ্বস্ত বিশ্বজনীন ফাংশন।
+
+
+// Function Declaration
+function formatCurrency(amount) {
+    return `$${amount.toFixed(2)}`;
+}
+
+
+
+
+
+ইউটিলিটি ও হেল্পার ফাংশন (Utility & Helper Functions)
+অ্যাপ্লিকেশনের বিভিন্ন জায়গায় যে ছোটখাটো ডাটা প্রসেসিং করতে হয় (যেমন: তারিখ ফরম্যাট করা, কারেন্সি পরিবর্তন, ভ্যালিডেশন), সেখানে এটি সেরা।
+
+
+// ফাইলের নিচে বা আলাদা utils.js ফাইলে রাখা হয়
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('bn-BD', options);
+}
+
+// Hoisting-এর সুবিধা থাকায় ফাংশন নিচে ডিফাইন করলেও ওপরে কল করা যায়
+const isEmailValid = validateEmail("user@gmail.com");
+console.log(formatDate("2026-10-30"));
+
+
+
+কনস্ট্রাক্টর ফাংশন বা অবজেক্ট ফ্যাক্টরি (Object Factory & Traditional Constructors)
+জাভাস্ক্রিপ্টে অবজেক্ট ব্লুপ্রিন্ট বা কাস্টম অবজেক্ট তৈরি করার জন্য (বিশেষ করে যেখানে নির্দিষ্ট this কনটেক্সট এবং প্রোটোটাইপ দরকার হয়)।
+
+
+
+// একটি ইউজার অবজেক্ট তৈরির ব্লুপ্রিন্ট
+function CreateUser(name, role) {
+    this.name = name;
+    this.role = role;
+    this.createdAt = new Date();
+}
+
+// প্রোটোটাইপে মেথড যোগ করা
+CreateUser.prototype.getRole = function() {
+    return `${this.name} is an ${this.role}`;
+};
+
+const user1 = new CreateUser("Aziz", "Admin");
+console.log(user1.getRole());
+
+
+
+
+
+
+
+২. কখন Function Expression / Arrow Function ব্যবহার করবেন? (Where Expression is Better)
+ব্লক স্কোপের ভেতরে (if, for, switch): আগের আলোচনার মতো if বা যেকোনো ব্লকের ভেতরে ডাইনামিকালি ফাংশন সেট করতে সবসময় Function Expression ব্যবহার।
+
+Callback Functions: .map(), .filter(), .reduce(), setTimeout বা Event Listener-এর ভেতরে।
+
+Inline Async Operations / Handlers: ব্যাকএন্ড রাউটার (Express/Fastify) বা মিডলওয়্যারে।
+
+JavaScript
+// Express.js API Endpoint এ Arrow Function Expression
+app.get('/users', async (req, res) => {
+    // Controller logic
+});
