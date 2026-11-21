@@ -48,56 +48,153 @@ getMyName(details);
 
 
 
-
-function printResult(result) {
-    console.log("Result is: " + result);
-}
-function addNumbers(a, b, callback) {
-    let sum = a + b;
-    callback(sum); 
+function myIntro(result){
+  console.log(`Result is: ${result}`);
 }
 
-addNumbers(5, 5, printResult);
+let details = (a, b, call) => {
+  let sum = a + b;
+  call(sum);
+}
 
-১. ফাংশন ডিফাইন বা তৈরি করা
-printResult(result): এটি একটি ফাংশন যার কাজ হলো কোনো মান পেয়ে তা কনসোলে আউটপুট দেখানো।
+details(5, 5, myIntro);
 
-addNumbers(a, b, callback): এটি প্রধান ফাংশন, যা ৩টি Parameters গ্রহণ করে:
+myIntro ফাংশনটা আর্গুমেন্ট হয়ে call প্যারামিটারে এসে বসেছে—তাই এখন call নিজেই হলো myIntro ফাংশনটা।
 
-a (প্রথম সংখ্যা)
-
-b (দ্বিতীয় সংখ্যা)
-
-callback (একটি ফাংশন)
-
-
-২. ফাংশন কল ও মান পাস করা
-addNumbers(5, 5, printResult);
-
-a (Local Variable) = 5 পায়।
-b (Local Variable) = 5 পায়।
-callback (Local Variable) = printResult ফাংশনটির রেফারেন্স নিজের মধ্যে জমা রাখে।
+তাই ভেতরে call(sum) লেখা মানেই হলো myIntro(10) লেখা—অর্থাৎ myIntro ফাংশনটাকে সরাসরি ডাকা হচ্ছে, 
+আর সাথে করে sum-এর মান 10 ঢুকিয়ে দেওয়া হচ্ছে myIntro-এর result প্যারামিটারে।
 
 
-৩. ভেতরের কাজ এবং লজিক (Execution Flow)
 
-যোগ করা: 
-let sum = a + b;
-এখানে 5 + 5 = 10 যোগ হয়ে sum নামের একটি Local Variable-এ জমা হয়।
+মূল কথা (এক নজরে)
 
-কলব্যাক চালানো:
+যখন details(5, 5, myIntro) কল করা হয়, তখন myIntro আর্গুমেন্টটা details-এর call প্যারামিটারে গিয়ে বসে।
 
-callback(sum);
+তাই ওই মুহূর্তে call মানেই হলো myIntro ফাংশনটা।
 
-যেহেতু callback-এর ভেতর printResult আছে এবং sum-এর মান 10, তাই এই লাইনটি কার্যকরভাবে হয়ে যায়:👉 printResult(10);
+এরপর ভেতরে যখন call(sum) চলে, তখন আসলে ওই myIntro ফাংশনটাকেই ডাকা হয়—এবং sum ভেরিয়েবলের মান 10-টাকে 
 
-রেজাল্ট রিসিভ ও প্রিন্ট করা:10 মানটি গিয়ে printResult(result) ফাংশনের result প্যারামিটারে (Local Variable) বসে।
-
-এরপর console.log("Result is: " + result); লাইনটি রান হয়ে আউটপুট দেখায়:
-
-Result is: 10
+আর্গুমেন্ট হিসেবে সাথে করে myIntro-এর result প্যারামিটারে পাঠিয়ে দেওয়া হয়।
 
 
+details(5, 5, myIntro): a-তে 5, b-তে 5, আর call প্যারামিটারে myIntro ফাংশন জমা হয়।
+
+let sum = a + b;: 5 + 5 হয়ে sum-এর ভেতর জমা হয় 10।
+
+call(sum);: যেহেতু call মানে myIntro, তাই এটি আসলে myIntro(10)-কে কল করে এবং 10 পাঠিয়ে দেয়।
+
+function myIntro(result): পাঠানো 10 এসে ঢোকে result প্যারামিটারে।
+
+console.log(...): Result is: 10 প্রিন্ট হয়।
+
+
+
+function myIntro(result){
+  console.log(`Result is: ${result}`);
+}
+
+let details = (a, b, call) => {
+  let sum = a + b;
+  call(sum);
+}
+
+details(5, 5, myIntro);
+
+
+১. আগে myIntro আর্গুমেন্টটা গিয়ে call প্যারামিটারে বসে। আর call প্যারামিটার যেহেতু ভেতরে call(sum) হিসেবে ডাকা হচ্ছে,
+   
+তাই ওই মুহূর্তে call(sum) আর myIntro(10) একই কথা।
+
+কোনো ফাংশনের নামের পাশে ব্র্যাকেট দিয়ে কোনো মান লেখেন—যেমন myIntro(10)—
+
+তখন জাভাস্ক্রিপ্টের সাধারণ নিয়মেই ব্র্যাকেটের ভেতরের মানটা (10) স্বয়ংক্রিয়ভাবে চলে যায় ওই ফাংশনের প্যারামিটারের ভেতর (result)।
+
+এটা আলাদা কোনো জাদু না, যেকোনো সাধারণ ফাংশনেই এভাবে কাজ করে। যেমন:
+
+
+function myIntro(result) {
+  console.log(`Result is: ${result}`);
+}
+
+myIntro(10);
+
+এখানে কী হলো?
+
+myIntro(10) বলে ফাংশনটাকে ডাকা হলো এবং ব্র্যাকেটে 10 দেওয়া হলো।
+
+myIntro-এর মাথায় থাকা (result) হলো সেই খালি জায়গা, যা ওই ব্র্যাকেটের প্রথম জিনিসটাকে ধরে।
+
+তাই 10 গিয়ে সোজা result-এর ভেতর বসে গেল।
+
+আগে যে call(sum) ছিল, সেটাও ঘুরেফিরে myIntro(10)-ই হয়ে গিয়েছিল—তাই নিয়ম একই: ব্র্যাকেটের 10 চলে গেল result-এ।
+
+
+
+ 
+
+myIntro হলো একটা ফাংশন।
+
+যখন আপনি সেটাকে details(5, 5, myIntro)-এ আর্গুমেন্ট হিসেবে পাথান হল, তখন সেই ফাংশনটা গিয়ে বসল call প্যারামিটারে।
+
+যেহেতু call-এর ভেতরে এখন myIntro ফাংশনটাই আছে, তাই ওই মুহূর্তে call-কেও একটা ফাংশন বলা যায়—
+
+আর সেজন্যই পরের লাইনে  ব্র্যাকেট দিয়ে call(sum) লিখে তাকে কল করতে পেরেছি!
+
+
+let details = (a, b, call) => {
+  let sum = a + b;
+  call(sum);
+}
+
+details(5, 5, myIntro); call holo myIntro function argument। ভিতরে call(sum) বা myIntro(sum)
+একই কথা  myIntro(10); কাজ শেষ বাইরে কেমনে বের হয় result paramiter এ আসে
+
+myIntro(10); বাইরে বের হয়ে যায় না, আর details-এর কাজও তখন শেষ হয় না।
+
+myIntro(10); লাইনটা যখন details-এর ভেতরে চলে, তখন আসলে কী হয়:
+
+details তখনো চলতে থাকে। details-এর ভেতরে call(sum); মানে হলো myIntro(10); ডাকা।
+
+myIntro(10); ডাকা হলে কম্পিউটারের পড়াটা details-এর ভেতর থেকে লাফ দিয়ে ওপরে লেখা myIntro ফাংশনের কাছে চলে যায়।
+   
+(বাইরে কোথাও যায় না, একই কোডের ভেতরে এক ফাংশন থেকে আরেক ফাংশনে যায়।)
+
+ওপরে গিয়ে function myIntro(result)-এর ভেতরে 10 ঢোকে result প্যারামিটারে।
+
+myIntro তার কাজ সেরে নেয়। তারপর আবার details-এর ভেতরে ফিরে আসে, আর তখন details-এর কাজ শেষ হয়।
+
+
+
+
+
+প্রোগ্রাম যখন ওপর থেকে নিচে পড়তে পড়তে details-এর ভেতরে ঢুকে call(sum) (অর্থাৎ myIntro(10)) চালায়, 
+   
+তখন details-এর ওই কাজটা শেষ হওয়ার মুহূর্তেই 10-টাকে myIntro-এর result প্যারামিটারে পাঠিয়ে দেওয়া হয়।
+
+একদম সহজ করে বললে:
+
+call(sum) চললে myIntro(10) কল হয়।
+
+তখন 10 গিয়ে বসে myIntro(result)-এর result প্যারামিটারে।
+
+তারপর myIntro-এর ভেতরের console.log চলে আর Result is: 10 প্রিন্ট হয়।
+
+
+
+
+
+myIntro যেহেতু একটা আলাদা ফাংশন, তাই details-এর ভেতরে call(sum) (অর্থাৎ myIntro(10)) চললে প্রোগ্রামটা details-এর কাজ সেরে myIntro ফাংশনের ভেতরে চলে যায়,
+   
+আর 10-টাকে result প্যারামিটারে বসিয়ে দিয়ে Result is: 10 দেখায়।
+
+যখন details-এর ভেতর call(sum) (অর্থাৎ myIntro(10)) চলে, তখন details তার নিজের ভেতরের sum-এর মান 10-টাকে নিয়ে 
+
+myIntro-এর result প্যারামিটারে পাঠিয়ে দেয়। আর তখনই myIntro-এর ভেতরে result-এর মান হয় 10, এবং Result is: 10 প্রিন্ট হয়।
+
+
+Callback (কলব্যাক ফাংশন) হলো myIntro। (কারণ এটাকে আরেকটা ফাংশনের ভেতর আর্গুমেন্ট হিসেবে পাঠানো হয়েছে, আর পরের ভেতর থেকে কল করা হচ্ছে।)
+
+Higher-Order Function (হায়ার-অর্ডার ফাংশন) হলো details। (কারণ এটা প্যারামিটার হিসেবে আরেকটা ফাংশন—অর্থাৎ myIntro-কে—নিচ্ছে।)
 
 
 
