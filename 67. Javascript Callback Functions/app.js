@@ -46,6 +46,27 @@ let details = function() {
 getMyName(details);
 
 
+সবার নিচে getMyName(details); লাইনটা চলল। অর্থাৎ getMyName ফাংশনকে ডাকা হলো, আর আর্গুমেন্ট হিসেবে পাঠানো হলো details ফাংশনটাকে।
+
+প্রোগ্রাম getMyName (myName)-এর ভেতরে ঢুকল। এখানে myName নামের প্যারামিটারের ভেতরে গিয়ে জমা হলো details ফাংশনটা।
+
+পরের লাইনে myName(); চলল। যেহেতু myName মানেই এখন details, তাই আসলে details() ফাংশনটা কল হলো।
+
+প্রোগ্রাম তখন details ফাংশনের ভেতরে গিয়ে name রাখল "Abdullah", age রাখল 30, আর প্রিন্ট করল: Abdullah 30।
+
+details-এর কাজ শেষ হলে আবার getMyName-এর ভেতরে ফিরে এসে getMyName-এর কাজও শেষ হলো।
+
+এখানে কে কী?
+   
+Callback Function: details (কারণ এটাকে আর্গুমেন্ট হিসেবে getMyName-এর ভেতরে পাঠানো হয়েছে, আর ভেতর থেকে myName() দিয়ে ডাকা হচ্ছে)।
+
+Higher-Order Function: getMyName (কারণ এটা প্যারামিটার হিসেবে আরেকটা ফাংশন details-কে নিচ্ছে এবং কল করছে)।
+
+
+
+
+
+
 
 
 function myIntro(result){
@@ -147,6 +168,7 @@ let details = (a, b, call) => {
 }
 
 details(5, 5, myIntro); call holo myIntro function argument। ভিতরে call(sum) বা myIntro(sum)
+
 একই কথা  myIntro(10); কাজ শেষ বাইরে কেমনে বের হয় result paramiter এ আসে
 
 myIntro(10); বাইরে বের হয়ে যায় না, আর details-এর কাজও তখন শেষ হয় না।
