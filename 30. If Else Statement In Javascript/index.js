@@ -1,7 +1,11 @@
-JavaScript-এ if-else স্টেটমেন্ট ব্যবহার করা হয় মূলত কোনো একটি নির্দিষ্ট শর্তের (condition) ওপর ভিত্তি করে সিদ্ধান্ত নেওয়ার জন্য। সহজ কথায়, "যদি এই শর্তটি সত্যি হয় তবে এই কাজটি করো, নাহলে অন্য কাজটি করো।"
+JavaScript-এ if-else স্টেটমেন্ট ব্যবহার করা হয় মূলত কোনো একটি নির্দিষ্ট শর্তের (condition) ওপর ভিত্তি করে সিদ্ধান্ত নেওয়ার জন্য।
+
+সহজ কথায়, "যদি এই শর্তটি সত্যি হয় তবে এই কাজটি করো, নাহলে অন্য কাজটি করো।"
 
 if: যদি শর্তটি সঠিক হয়।
+
 else if: যদি আগের শর্তটি ভুল হয় কিন্তু নতুন এই শর্তটি সঠিক হয়।
+
 else: যদি উপরের কোনো শর্তই সঠিক না হয়।
 
 ১. শর্তটি সব সময় ব্র্যাকেটের ( ) ভেতরে লিখতে হয়।
@@ -14,15 +18,20 @@ if-else-এ কন্ডিশনের বাইরে () ১০০% বাধ�
 প্রোগ্রামিং ভাষার ব্যাকরণ বা সিঙ্কট্যাক্স ডিজাইনে এটি রাখার ৩টি প্রধান কারণ:
 
 ১. কন্ডিশন এবং কোড স্টেটমেন্ট আলাদা করা
+
 কোড স্ক্যান করার সময় ইন্টারপ্রেটার কীভাবে বুঝবে যে কন্ডিশনটি ঠিক কোথায় শেষ হয়েছে এবং আপনার চালানো কোড কোথায় শুরু হয়েছে? () বন্ধনীটি কন্ডিশনের শুরু ও শেষ বিন্দু নির্দেশ করে।
 
 ২. {} অপশনাল রাখা
+
 C, C++ এবং JavaScript-এ এক লাইনের কোডের জন্য {} (Curly Braces) না দিলেও চলে।
+
 যেমন:
+
 if (age >= 18) console.log("Adult");
 
 
 যদি () না থাকত, তবে কোডটি হতো: if age >= 18 console.log("Adult")
+
 এখানে ইন্টারপ্রেটার কনফিউজড হয়ে যেত যে 18 কি কন্ডিশনের শেষ নাকি console.log কন্ডিশনের অংশ।
 
 
@@ -34,10 +43,15 @@ if (age >= 18) console.log("Adult");
 
 
 let mangoPrice = 20;
+
 let bananaPrice = 20;
+
 if (mangoPrice <= bananaPrice) {
     console.log("Its True");
 }
+
+
+
 
 let myName = "Abdullah";
 
@@ -45,14 +59,21 @@ if (myName == "Abdullah") {
     console.log("Hello");
  }
 
+
+
 if (3 < 5) {
     console.log("Yes True");
 }
+
+
 
 let name = "Aziz";
     if (name == "Abdullah") {
     console.log("is false");
 }
+
+
+
 
 let a;
 
@@ -60,15 +81,22 @@ if (a = "Abdullah") {
     console.log("is True");
 }
 
+
+
 let b;
 if (b = null) {
     console.log("is false");
  }
 
+
+
 let myColor = "Orange";
+
 if (myColor == "Orange") {
     console.log("Just like the Orange !");
 }
+
+
 
 let c;
 
@@ -76,24 +104,34 @@ if ( c = "Hello" ) {
     console.log("C Is True");
 }
 
+
+
 let d;
 
 if ( d = null ) {
     console.log("C Is False");
 }
 
+
+
 let e;
 if (e = "Abdullah") {
     console.log("My Name Is Abdullah");
 }
 
+
+
 if ("0") {
     console.log("This is True")
 }
 
+
+
 if ( 3 + 5 ) {
     console.log("Its True")
 }
+
+
 
 let amount = prompt("Enter Your Amount: ");
 if (amount = "100") {
@@ -101,23 +139,35 @@ if (amount = "100") {
 }
 
 
-JavaScript-এ Arithmetic Operators ব্যবহার করার সময় অনেক ক্ষেত্রে ডাটা অটোমেটিকভাবে Number টাইপে রূপান্তর হয়। এটাকেই বলা হয় Type Coercion। (গাণিতিক অপারেটর যেমন: +, -, *, /) 
+JavaScript-এ Arithmetic Operators ব্যবহার করার সময় অনেক ক্ষেত্রে ডাটা অটোমেটিকভাবে Number টাইপে রূপান্তর হয়।
+
+এটাকেই বলা হয় Type Coercion। (গাণিতিক অপারেটর যেমন: +, -, *, /) 
     
 Type Coercion:   
+
 যখন JavaScript নিজে থেকেই এক টাইপের ডাটাকে অন্য টাইপে পরিবর্তন করে, তখন তাকে Type Coercion বলে।
 
 "10" → string
+
 5 → number
+
 Arithmetic operator ব্যবহার করলে JavaScript অনেক সময় string কে number বানিয়ে ফেলে।
 
 
 console.log("10" - 2);   // আউটপুট: 8 (স্ট্রিং "10" সংখ্যা ১০-এ রূপান্তরিত হয়েছে)
+
 console.log("5" * "4");  // আউটপুট: 20 (দুটি স্ট্রিংই সংখ্যায় রূপান্তরিত হয়েছে)
+
 console.log(true + 5);   // আউটপুট: 6 (true রূপান্তরিত হয়েছে 1-এ)
+
 console.log(false + 5);  // আউটপুট: 5 (false রূপান্তরিত হয়েছে 0-এ)
+
 console.log(null + 10);  // আউটপুট: 10 (null রূপান্তরিত হয়েছে 0-এ)
+
 console.log(undefined + 10);
+
 console.log("5" + 2);    // আউটপুট: "52" (এখানে যোগ না হয়ে জোড়া লেগেছে)
+
 console.log(5 + 2);      // আউটপুট: 7 (সাধারণ যোগ)
 
 
@@ -180,7 +230,10 @@ if (isStudent === true || age >= 60) {
 
 
 🔍 Logical NOT (!) অপারেটর কী করে?
-নিয়ম: ! এর কাজ হলো সত্যি (True) কে মিথ্যা (False) বানিয়ে দেওয়া, আর মিথ্যা (False) কে সত্যি (True) বানিয়ে দেওয়া। অর্থাৎ, এটি শর্তকে উল্টে দেয় (Invert করে)।
+    
+নিয়ম: ! এর কাজ হলো সত্যি (True) কে মিথ্যা (False) বানিয়ে দেওয়া, 
+    
+আর মিথ্যা (False) কে সত্যি (True) বানিয়ে দেওয়া। অর্থাৎ, এটি শর্তকে উল্টে দেয় (Invert করে)।
 
 let isLightOn = false; // আলো এখন বন্ধ
 
@@ -220,6 +273,7 @@ if (!isLoggedIn) {
 
 
 ১. ফ্রি শিপিং অফার (Free Shipping Eligibility)
+
 শর্ত: কোনো অর্ডার ক্যান্সেল হওয়া যাবে না AND (অর্ডারের পরিমাণ $১০০০ এর বেশি হতে হবে OR প্রিমিয়াম মেম্বার হতে হবে)।
 
 
@@ -248,6 +302,7 @@ AND এর কাজ: true && true ➔ true (তাই if এর কোড র�
 
 
 ২. পরীক্ষার এডমিট কার্ড ডাউনলোড (Exam Hall Permission)
+
 শর্ত: ফি বকেয়া থাকা যাবে না AND (উপস্থিতি ৮০% এর বেশি হতে হবে OR স্পেশাল পারমিশন থাকতে হবে)।
 
 let hasDueFees = false;
@@ -274,6 +329,7 @@ AND এর কাজ: true && true ➔ true
 
 
 ৩. রাইড শেয়ারিং ডিসকাউন্ট (Discount Eligibility)
+
 শর্ত: রাত হওয়া যাবে না AND (প্রমো কোড থাকতে হবে OR ইউজার ফার্স্ট টাইম রাইডার হতে হবে)।
 
 let isNight = true;
@@ -327,7 +383,9 @@ if (!isBanned && age >= 18 || isVIP) {
 
 
 
+
 ৫. ব্যাংক লোন অনুমোদন (Bank Loan Approval)
+
 শর্ত: খারাপ ক্রেডিট স্কোর থাকা যাবে না AND আয় ৫০,০০০ এর বেশি হতে হবে, অথবা গ্যারান্টর (Guarantor) থাকতে হবে।
 
 let hasBadCreditScore = true;
@@ -352,7 +410,10 @@ if (!hasBadCreditScore && monthlyIncome > 50000 || hasGuarantor) {
 সবার শেষে OR (||): false || hasGuarantor ➔ false || true ➔ true (গ্যারান্টর থাকায় শেষমেশ লোন পাস হয়ে গেল!)
 
 💡 গোল্ডেন রুল (Golden Rule for Beginners)
-কোড লেখার সময় প্রেসিডেন্স বা কাজের ধারাবাহিকতা মুখস্থ না রেখে সবসময় ব্র্যাকেট () ব্যবহার করা বেস্ট প্র্যাকটিস। এতে নিজের ইচ্ছামতো লজিক নিয়ন্ত্রণ করা যায় এবং কোড পড়া সহজ হয়।
+
+কোড লেখার সময় প্রেসিডেন্স বা কাজের ধারাবাহিকতা মুখস্থ না রেখে সবসময় ব্র্যাকেট () ব্যবহার করা বেস্ট প্র্যাকটিস। 
+
+এতে নিজের ইচ্ছামতো লজিক নিয়ন্ত্রণ করা যায় এবং কোড পড়া সহজ হয়।
 
 
 
@@ -439,6 +500,7 @@ if (!isPaidUser || isFreeTrialAvailable) {
 
 
 ৩. && (AND) এবং || (OR) এর মিশ্রণ
+
 নিয়ম (প্রেসিডেন্স): ব্র্যাকেট না থাকলে && (AND) এর কাজ আগে হবে, তারপর || (OR) এর কাজ হবে।
 
 উদাহরণ ১: ট্রাভেল টিকিট বুকিং
@@ -478,3 +540,83 @@ if (level >= 10 && coins >= 500 || isVIPMember) {
 }
 
 আউটপুট: New Weapon Unlocked!
+
+
+
+
+
+// ৩. Precedence & Logical Operators (!, &&, ||, ??)
+let rawAge = "20";
+let age = Number(rawAge);
+let hasId = true;
+let isBlocked = false;
+let rawDiscount = 0;
+let discount = rawDiscount ?? 5; // 0 null/undefined না, তাই 0-ই থাকবে
+
+// এখানে আগে !isBlocked, তারপর age >= 18, তারপর &&, শেষে ||
+if ((!isBlocked && age >= 18 && hasId) || age >= 65) {
+  console.log(`Eligible. Discount: ${discount}%`);
+} else {
+  console.log("Not eligible.");
+}
+
+
+
+
+// ৪. Advanced: Guard-style Validation + Edge Case + Ternary (ফাংশন ছাড়া)
+let rawWithdraw = "750";
+let balance = 2000;
+let amount = Number(rawWithdraw);
+
+if (rawWithdraw === "" || rawWithdraw === null || Number.isNaN(amount)) {
+  console.log("Error: Valid amount din.");
+} else if (!Number.isInteger(amount)) {
+  console.log("Error: Shudhu purno sonkha lagbe.");
+} else if (amount <= 0) {
+  console.log("Error: 0 ba tar kom withdraw hoy na.");
+} else if (amount > balance) {
+  console.log("Error: Balance porjapto na.");
+} else {
+  balance -= amount;
+  let status = balance < 500 ? "LOW_BALANCE" : "OK";
+  console.log(`Success. Remaining: ${balance}, Status: ${status}`);
+}
+
+
+
+
+    
+(Advanced): Guard Clause, Input Validation ও Ternary/Nullish প্যাটার্ন
+
+বাস্তব কোড বা ব্যাকএন্ডে গভীর if-else নেস্টিং না করে শুরুতেই ভুল বা edge-case আটকে দেওয়া হয়
+    
+(Guard Clause)। ছোট মানের জন্য Ternary (? :) এবং null/undefined এর জন্য ?? বেশ কাজে লাগে।
+
+function processWithdrawal(rawAmount, currentBalance) {
+  let amount = Number(rawAmount);
+
+  // Guard Clauses: আগেভাগেই invalid বা edge-case বাদ দেওয়া হচ্ছে
+  if (rawAmount === "" || rawAmount === null || Number.isNaN(amount)) {
+    return { ok: false, message: "Invalid amount input." };
+  }
+  if (amount <= 0) {
+    return { ok: false, message: "Amount must be greater than zero." };
+  }
+  if (amount > currentBalance) {
+    return { ok: false, message: "Insufficient balance." };
+  }
+
+  let remainingBalance = currentBalance - amount;
+  let statusTag = remainingBalance < 500 ? "LOW_BALANCE" : "HEALTHY";
+
+  return {
+    ok: true,
+    remainingBalance,
+    statusTag
+  };
+}
+
+let userBalance = null ?? 2000;
+console.log(processWithdrawal("750", userBalance));
+console.log(processWithdrawal("5000", userBalance));
+console.log(processWithdrawal("abc", userBalance));
